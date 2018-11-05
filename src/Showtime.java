@@ -6,6 +6,8 @@ package pkg10192018java;
  */
 public class Showtime {
     private Movie movie;
+    private Theatre theatre;
+    private int id;
     private double increaseSeatPrice = 0;
     private String soundtrack = "Thai";
     private String subtitle = "None";
@@ -15,6 +17,10 @@ public class Showtime {
         this.movie = movie;
     }
     //------------------------------------------------------------------- Method
+    public int getID() {
+        return id;
+    }
+    
     public boolean checkValidShowtime(String check) {
         return check.equalsIgnoreCase(period);
     }
@@ -26,6 +32,9 @@ public class Showtime {
     }
     public String getMovieThai() {
         return movie.getThaiName();
+    }
+    public double getPrice(String id) {
+        return increaseSeatPrice + theatre.getSeatPrice(id);
     }
     
     private String getPeriod() {

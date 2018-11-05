@@ -11,7 +11,7 @@ public class Main {
         Movie new1 = new Movie(1);
         Movie new2 = new Movie(2, "english", "thai");
         System.out.println(new1);
-        
+        Showtime st1 = new Showtime(new2);
         
     }
     
