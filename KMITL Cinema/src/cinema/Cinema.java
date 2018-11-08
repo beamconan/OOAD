@@ -77,7 +77,7 @@ public class Cinema {
         String pass = u.encryptPassword(password);
         
         for (User user : this.userList) {
-            if(user.getUserName().equals(username) && user.getPassWord().equals(pass)){
+            if(user.getUsername().equals(username) && user.getPassword().equals(pass)){
                 return true;
             }
         } 
@@ -89,8 +89,6 @@ public class Cinema {
             for (User u : this.userList) {
                 if (u.getEmail().equals(email)) {
                     return true;
-                }else{
-                    return false;
                 }
             }
         return false;
@@ -99,10 +97,8 @@ public class Cinema {
     public boolean checkExistUsername(String username){
         this.updateUserList();
             for (User u : this.userList) {
-                if (u.getUserName().equals(username)) {
+                if (u.getUsername().equals(username)) {
                     return true;
-                }else{
-                    return false;
                 }
             }
         return false;
@@ -118,7 +114,6 @@ public class Cinema {
         this.userList = users;
         em.close();
         emf.close();
-        
     }
     
     public void addUser(User user){
