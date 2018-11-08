@@ -54,7 +54,11 @@ public class RegisterController implements Initializable{
 
     List<User> allUser;
     Cinema cinema;
-            
+    
+    public RegisterController() {
+        this.cinema = cinema.getInstance();
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         clearLabel();
@@ -135,11 +139,19 @@ public class RegisterController implements Initializable{
                 String email = txtEmail.getText();
                 // 0 = admin , 1 = staff , 2 = customer
                 String userType = "Customer"; // Default Customer
-                
+                AlertMaker.showSimpleAlert("Password Prehash",password);
                 User newUser = new User(userName, password, firstName, lastName, email, userType);
+                AlertMaker.showSimpleAlert("Password hashed",newUser.getPassWord());
+                AlertMaker.showSimpleAlert("Test pass", newUser.encryptPassword(password));
+                boolean testPass = newUser.getPassWord().equals(newUser.encryptPassword(password));
+                String testPassStr = String.valueOf(testPass);
+                AlertMaker.showSimpleAlert("Euqal ?", testPassStr);
                 cinema.addUser(newUser); // add new user
                 System.out.println("Add user to database cinema completed");
                 AlertMaker.showSimpleAlert("Register Completed", newUser.toString());
+                boolean test = cinema.checkValidUser(userName, password);
+                String testStr = String.valueOf(test);
+                AlertMaker.showSimpleAlert("Test",testStr);
 //                boolean isCreate = dao.createAccount(newAcc);
 //                if(isCreate){
 //                    clearForm();
