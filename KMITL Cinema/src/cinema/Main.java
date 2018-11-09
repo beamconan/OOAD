@@ -16,9 +16,9 @@ public class Main {
        List<User> userList = new ArrayList<User>();
        
         Cinema cinema = Cinema.getInstance();
-//        User user = new User("jamesphijak","0879723879","Phijak","Chanyawiwatkul","jamesphijak@hotmail.com","Customer");
-////        System.out.println(user.toString());
-//        cinema.addUser(user);
+        User user = new User("jamesphijak","0879723879","Phijak","Chanyawiwatkul","jamesphijak@hotmail.com","Customer");
+//        System.out.println(user.toString());
+        cinema.addUser(user);
         System.out.println(cinema.getUserList());
         
         System.out.println(cinema.checkExistEmail("jamesphijak@hotmail.com"));

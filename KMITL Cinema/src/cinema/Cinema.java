@@ -70,37 +70,18 @@ public class Cinema {
     }
     
     //---------------------------------------------------------- Update Method
-    public void updateList() {
-        // ดึงข้อมูลจาก db ส่วน User
-    }
     
     public boolean checkValidUser(String username,String password){
         this.updateUserList();
         User u = new User();
         String pass = u.encryptPassword(password);
         
-//        this.updateUserList();
-//        if(this.userList.contains(username)){
-//            User user = this.userList.get(this.userList.indexOf(username));
-//            if(user.getPassWord().equals(pass)){
-//                return true;
-//            }else{
-//                System.out.println("1");
-//                return false;
-//            }
-//        }else{
-//            System.out.println("2");
-//            return false;
-//        }
         for (User user : this.userList) {
-            if(user.getUserName().equals(username) && user.getPassWord().equals(pass)){
+            if(user.getUsername().equals(username) && user.getPassword().equals(pass)){
                 return true;
-            }else{
-                return false;
             }
         } 
-        return false;
-        
+        return false;  
     }
     
     public boolean checkExistEmail(String email){
@@ -108,8 +89,6 @@ public class Cinema {
             for (User u : this.userList) {
                 if (u.getEmail().equals(email)) {
                     return true;
-                }else{
-                    return false;
                 }
             }
         return false;
@@ -118,10 +97,8 @@ public class Cinema {
     public boolean checkExistUsername(String username){
         this.updateUserList();
             for (User u : this.userList) {
-                if (u.getUserName().equals(username)) {
+                if (u.getUsername().equals(username)) {
                     return true;
-                }else{
-                    return false;
                 }
             }
         return false;
@@ -137,7 +114,6 @@ public class Cinema {
         this.userList = users;
         em.close();
         emf.close();
-        
     }
     
     public void addUser(User user){

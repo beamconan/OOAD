@@ -54,7 +54,11 @@ public class RegisterController implements Initializable{
 
     List<User> allUser;
     Cinema cinema;
-            
+    
+    public RegisterController() {
+        this.cinema = cinema.getInstance();
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         clearLabel();
@@ -128,23 +132,28 @@ public class RegisterController implements Initializable{
             if(isPasswordMatch && !searchUsernameFound && isEmailValid && !searchEmailFound){
                 System.out.println("Create Operation...");
                 // สร้าง Object
-                String userName = txtUsername.getText();
+                String username = txtUsername.getText();
                 String password = txtPassword.getText();
-                String firstName = txtFirstName.getText();
-                String lastName = txtLastName.getText();
+                String firstname = txtFirstName.getText();
+                String lastname = txtLastName.getText();
                 String email = txtEmail.getText();
                 // 0 = admin , 1 = staff , 2 = customer
-                String userType = "Customer"; // Default Customer
-                
-                User newUser = new User(userName, password, firstName, lastName, email, userType);
+                String type = "Customer"; // Default Customer
+                AlertMaker.showSimpleAlert("Password Prehash",password);
+                User newUser = new User(username, password, firstname, lastname, email, type);
+                AlertMaker.showSimpleAlert("Password hashed",newUser.getPassword());
+                AlertMaker.showSimpleAlert("Test pass", newUser.encryptPassword(password));
+                boolean testPass = newUser.getPassword().equals(newUser.encryptPassword(password));
+                String testPassStr = String.valueOf(testPass);
+                AlertMaker.showSimpleAlert("Euqal ?", testPassStr);
                 cinema.addUser(newUser); // add new user
                 System.out.println("Add user to database cinema completed");
                 AlertMaker.showSimpleAlert("Register Completed", newUser.toString());
-//                boolean isCreate = dao.createAccount(newAcc);
-//                if(isCreate){
-//                    clearForm();
-//                }
-                    
+                boolean test = cinema.checkValidUser(username, password);
+                String testStr = String.valueOf(test);
+                AlertMaker.showSimpleAlert("Test",testStr);
+                clearForm();
+    
             }
             
         }else{
